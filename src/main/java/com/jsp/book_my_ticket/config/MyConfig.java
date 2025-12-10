@@ -9,6 +9,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableAsync
@@ -17,6 +19,7 @@ public class MyConfig {
 	SecureRandom random() {
 		return new SecureRandom();
 	}
+
 	@Bean
 	RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
 		RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -28,4 +31,7 @@ public class MyConfig {
 		template.afterPropertiesSet();
 		return template;
 	}
+
+
+
 }
