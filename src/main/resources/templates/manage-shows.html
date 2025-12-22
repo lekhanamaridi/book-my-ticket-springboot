@@ -7,7 +7,7 @@
 <body>
 <div align="center">
 	<div th:if="${!shows.isEmpty()}">
-		 <table border="1" cellpadding="8" cellspacing="0">
+    <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
                 <th>Show Date</th>
@@ -40,7 +40,7 @@
 <div th:if="${shows.isEmpty()}">
     <p>No shows available.</p>
 </div>
-	
+
 	<a th:href="'/add-show/'+${id}"><button>Add Show</button></a>
 	
 </div>
