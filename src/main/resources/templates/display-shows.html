@@ -1,0 +1,17 @@
+return "main";
+	}
+
+	@Override
+	public String bookMovie(Long id, HttpSession session, RedirectAttributes attributes, ModelMap map) {
+		Movie movie = movieRepository.findById(id).orElseThrow(() -> new RuntimeException("Movie not found"));
+
+		List<String> showDates = showRepository.findByMovieAndShowDateAfter(movie, LocalDate.now().minusDays(1))
+				.stream().map(Show::getShowDate) // LocalDate
+				.distinct() // remove duplicates
+				.sorted() // sort ascending
+				.map(LocalDate::toString) // JS-safe string
+				.toList();
+		map.put("movie", movie);
+		map.put("showDate", showDates);
+
+		return "display-shows";
